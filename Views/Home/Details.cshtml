@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model Wedding
+
+<div class="jumbotron text-center">
+  <h1 class="display-5">@Model.Wedder1 & @Model.Wedder2's Wedding:</h1>
+  <div class="row">
+    <div class="col-5">
+      <h4>Date: @String.Format("{0:d}", Model.Date)</h4>
+      <h4>Planner: @Model.Planner.FirstName @Model.Planner.LastName</h4>
+      <h4>Guests:</h4>
+      <ul>
+        @foreach (Association a in @Model.Attendees)
+        {
+          @if( a.Attendee.UserId == ViewBag.User.UserId)
+          {
+            <li>You</li>
+          }
+          else
+          {
+            <li>@a.Attendee.FirstName @a.Attendee.LastName</li>
+          }
+        }
+      </ul>
+    </div>
+    <div class="col-5">
+
+    </div>
+  </div>
+</div>
